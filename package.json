@@ -1,0 +1,96 @@
+{
+  "name": "movelazy-extension",
+  "displayName": "Movelazy - Movement Extension",
+  "icon": "media/icon.png",
+  "publisher": "Movelazy",
+  "description": "Simplify the Development of Move Contracts on Movement",
+  "license": "MIT",
+  "version": "0.0.2",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "movelazy.openSimulator",
+        "title": "open simulator"
+      },
+      {
+        "command": "movelazy.openWebview",
+        "title": "open webview"
+      },
+      {
+        "command": "extension.runMoveLazy",
+        "title": "Movelazy execute command block"
+      },
+      {
+        "command": "extension.removeOutput",
+        "title": "Movelazy remove markdown output"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "movelazy",
+          "title": "MoveLazy",
+          "icon": "./media/logo.svg"
+        }
+      ]
+    },
+    "views": {
+      "movelazy": [
+        {
+          "type": "webview",
+          "id": "MovelazyView",
+          "name": "MoveLazy"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "install:all": "npm install && cd webview && npm install",
+    "vscode:prepublish": "npm run compile && npm run webview:build",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test",
+    "webview:build": "cd webview && npm run build",
+    "webview:dev": "cd webview && npm run dev"
+  },
+  "devDependencies": {
+    "@types/eslint": "^9.6.1",
+    "@types/express": "^5.0.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.93.0",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.22.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@aptos-labs/ts-sdk": "^1.35.0",
+    "@monaco-editor/react": "^4.7.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "axios": "^1.8.1",
+    "dotenv": "^16.4.7",
+    "ethers": "^5.7.2",
+    "express": "^4.21.2",
+    "glob": "^11.0.0",
+    "hardhat": "^2.22.15",
+    "lru-cache": "^11.0.1",
+    "monaco-editor": "^0.52.2",
+    "monaco-editor-webpack-plugin": "^7.1.0",
+    "openai": "^4.85.4"
+  }
+}
